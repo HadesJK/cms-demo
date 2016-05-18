@@ -4,11 +4,16 @@
 
 ## 开发框架
 主要涉及到以下开源框架
-1.spring
-2.springMVC
-3.velocity
-4.mybatis（数据库ORM）
-5.jetty（web 容器）
+
+1. spring
+
+2. springMVC
+
+3. velocity
+
+4. mybatis（数据库ORM）
+
+5. jetty（web 容器）
 
 ------
 
@@ -28,7 +33,7 @@ web.xml我一般以servlet的知识来理解
 
 ### 几个标签的解释
 
-1. web-app
+- web-app
 这个是根元素，至于怎么写，同学，看你用servlet版本了。
 我用servlet3.1， 那么是这样子的：
 ```
@@ -41,7 +46,7 @@ web.xml我一般以servlet的知识来理解
 ```
 至于你用servlet2.5或者servlet3.0 那么自己去网上搜吧，我想很少有人能背出这行代码来的。
 
-2. welcome-file-list和welcome-file
+- welcome-file-list和welcome-file
 welcome-file-list 下可能有好几个 welcome-file。
 显示时按顺序从第一个找起，如果第一个存在，就显示第一个，后面的不起作用。
 如果第一个不存在，就找第二个，以此类推。
@@ -61,12 +66,12 @@ welcome-file-list 下可能有好几个 welcome-file。
 http://blog.csdn.net/shanliangliuxing/article/details/7458492
 http://www.cnblogs.com/hxsyl/p/3435412.html
 
-3. display-name
+- display-name
 这个名字实际上对于项目的运行完全没有必要。
 但是最好配上去，为毛呢？还需要维护这个工程的话，那么这个友好的名字很重要。
 例如，tomcat 管理页面中可以显示当前的web应用。
 
-4. 其它的元素
+- 其它的元素
 之后有时间再补上吧。。。
 
 ------
