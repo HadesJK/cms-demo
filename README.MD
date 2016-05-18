@@ -4,11 +4,11 @@
 
 ## 开发框架
 主要涉及到以下开源框架
-1. spring
-2. springMVC
-3. velocity
-4. mybatis（数据库ORM）
-5. jetty（web 容器）
+1.spring
+2.springMVC
+3.velocity
+4.mybatis（数据库ORM）
+5.jetty（web 容器）
 
 ------
 
@@ -17,40 +17,36 @@
 ### 目录结构
 
 web的目录结构一般如下
-根目录
+
+```
+webapp
    WEB-INF
       web.xml
+```
 
 web.xml我一般以servlet的知识来理解
 
 ### 几个标签的解释
 
-1. web-app
-
+1.gitweb-app
 这个是根元素，至于怎么写，同学，看你用servlet版本了。
 我用servlet3.1， 那么是这样子的：
-
 ```
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
 </web-app>
 ```
-
 至于你用servlet2.5或者servlet3.0 那么自己去网上搜吧，我想很少有人能背出这行代码来的。
-
-2. welcome-file-list和welcome-file
-
+2.welcome-file-list和welcome-file
 welcome-file-list 下可能有好几个 welcome-file。
 显示时按顺序从第一个找起，如果第一个存在，就显示第一个，后面的不起作用。
 如果第一个不存在，就找第二个，以此类推。
 关于欢迎页面：访问一个网站时，默认看到的第一个页面就叫欢迎页，一般情况下是由首页来充当欢迎页的。
 一般情况下，我们会在web.xml中指定欢迎页。
 但web.xml并不是一个Web的必要文件，没有web.xml，网站仍然是可以正常工作的。（具体怎么工作的，我也不晓得。。。）
-
 对于tomcat来说，当你只指定一个web的根名，没有指定具体页面，
 去访问时一个web时，如果web.xml文件中配置了欢迎页，那么就返回指定的那个页面作为欢迎页，
 如果没有web.xml文件，或虽然有web.xml，但web.xml也没指定欢迎页的情况下，
@@ -60,19 +56,14 @@ welcome-file-list 下可能有好几个 welcome-file。
 它就显示The requested resource (/XXX) is not available(我就出现过这个问题)的页面。
 其中XXX表示web的根名。但如果你指定了具体页面，是可以正常访问的。
 **事实上，在我的工程里，jetty也是一样的**
-
 这两位哥们写的很好
 http://blog.csdn.net/shanliangliuxing/article/details/7458492
 http://www.cnblogs.com/hxsyl/p/3435412.html
-
-3. display-name
-
+3.display-name
 这个名字实际上对于项目的运行完全没有必要。
 但是最好配上去，为毛呢？还需要维护这个工程的话，那么这个友好的名字很重要。
 例如，tomcat 管理页面中可以显示当前的web应用。
-
-4. 其它的元素
-
+4.其它的元素
 之后有时间再补上吧。。。
 
 ## SpringMVC
