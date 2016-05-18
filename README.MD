@@ -28,7 +28,7 @@ web.xml我一般以servlet的知识来理解
 
 ### 几个标签的解释
 
-1.web-app
+1. web-app
 这个是根元素，至于怎么写，同学，看你用servlet版本了。
 我用servlet3.1， 那么是这样子的：
 ```
@@ -41,7 +41,7 @@ web.xml我一般以servlet的知识来理解
 ```
 至于你用servlet2.5或者servlet3.0 那么自己去网上搜吧，我想很少有人能背出这行代码来的。
 
-2.welcome-file-list和welcome-file
+2. welcome-file-list和welcome-file
 welcome-file-list 下可能有好几个 welcome-file。
 显示时按顺序从第一个找起，如果第一个存在，就显示第一个，后面的不起作用。
 如果第一个不存在，就找第二个，以此类推。
@@ -61,18 +61,23 @@ welcome-file-list 下可能有好几个 welcome-file。
 http://blog.csdn.net/shanliangliuxing/article/details/7458492
 http://www.cnblogs.com/hxsyl/p/3435412.html
 
-3.display-name
+3. display-name
 这个名字实际上对于项目的运行完全没有必要。
 但是最好配上去，为毛呢？还需要维护这个工程的话，那么这个友好的名字很重要。
 例如，tomcat 管理页面中可以显示当前的web应用。
-4.其它的元素
+
+4. 其它的元素
 之后有时间再补上吧。。。
+
+------
 
 ## SpringMVC
 
 之前使用了很长时间的struts2，偶然的机会用到了springMVC，之后决定再也不用struts2了。
 springMVC既可以开发web，也能开发webService。
 之后细说吧。。
+
+------
 
 ## velocity
 
@@ -148,6 +153,8 @@ public class springMVC {
 就去找这个文件呗。。。这个文件就是现实的页面，而使用空白的blank.vm装饰。
 访问的url： localhost:21322/springMVCVelocity
 
+------
+
 ## 使用开源前端模板
 
 前端我太弱了，一般都是去网上找找开源的前端模板，这个demo中，我用到了charisma
@@ -165,6 +172,8 @@ springMVC对静态资源有点小小的要求，就是不拦截静态资源，�
 <mvc:resources location="/charisma/" mapping="/charisma/**"/>
 ```
 
+------
+
 ## 补充说明
 
 因为使用maven管理项目，遵循约定优于配置的方式，maven web 工程的目录结构一般如下
@@ -176,6 +185,8 @@ springMVC对静态资源有点小小的要求，就是不拦截静态资源，�
 | src/main/webapp       |web的根目录        |
 | src/test/java         |测试的java代码     |
 | src/test/resources    |测试的资源文件     |
+
+------
 
 ## 整合mybatis
 
