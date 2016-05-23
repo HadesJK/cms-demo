@@ -14,6 +14,6 @@ public interface StudentsMapper {
     void insert(Student student);
     void updateById(Student student);
     Student selectById(int id);
+    Student selectByNameAndPassword(String name, String password);
     List<Student> selectAll();
-
 }

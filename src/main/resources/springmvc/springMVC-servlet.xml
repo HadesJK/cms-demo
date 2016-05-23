@@ -52,7 +52,9 @@
 
     <!--静态资源不拦截-->
     <mvc:resources mapping="/charisma/**" location="/charisma/" />
-    <mvc:resources mapping="/img/**" location="/img/" />
+    <mvc:resources mapping="/imgs/**" location="/imgs/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/js/**" location="/js/" />
 
     <!-- 引入jdbc配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

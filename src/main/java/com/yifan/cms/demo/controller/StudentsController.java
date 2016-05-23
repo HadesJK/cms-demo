@@ -1,7 +1,12 @@
 package com.yifan.cms.demo.controller;
 
+import com.yifan.cms.demo.service.StudentsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
 
 /**
  * Created by yifan
@@ -10,9 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Data 2016/5/18 21:59
  */
 @Controller
+@RequestMapping("/students")
 public class StudentsController {
-    @RequestMapping("list")
-    public String list() {
+    @Resource
+    private StudentsService studentsService;
+
+    @RequestMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("students", studentsService.getAllMembers());
         return "students/list";
+    }
+
+    @RequestMapping("/userAdd")
+    public String userAddIndex() {
+        return "students/userAdd";
+    }
+
+    @RequestMapping("/addUser")
+    public ModelAndView addUser(String name, String password, String number, String clazz, Integer age, String sex, String phone) {
+        studentsService.addUser(name, password, number, clazz, age, sex, phone);
+        return new ModelAndView("redirect:/students/list");
     }
 }

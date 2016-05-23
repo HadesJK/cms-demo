@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.yifan.cms.demo.entity.Student" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="number" property="number" jdbcType="VARCHAR" />
         <result column="class" property="clazz" jdbcType="VARCHAR" />
         <result column="age" property="age" jdbcType="INTEGER" />
@@ -16,8 +17,9 @@
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null">id,</if>
             <if test="name != null">name,</if>
+            <if test="password != null">password,</if>
             <if test="number != null">number,</if>
-            <if test="clazz != null">clazz,</if>
+            <if test="clazz != null">class,</if>
             <if test="age != null">age,</if>
             <if test="sex != null">sex,</if>
             <if test="phone != null">phone</if>
@@ -25,6 +27,7 @@
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >#{id,jdbcType=INTEGER},</if>
             <if test="name != null" >#{name,jdbcType=VARCHAR},</if>
+            <if test="password != null" >#{password,jdbcType=VARCHAR},</if>
             <if test="number != null" >#{number,jdbcType=VARCHAR},</if>
             <if test="clazz != null" >#{clazz,jdbcType=VARCHAR},</if>
             <if test="age != null" >#{age,jdbcType=INTEGER},</if>
@@ -36,11 +39,12 @@
     <update id="updateById" parameterType="com.yifan.cms.demo.entity.Student">
         UPDATE students SET
         <if test="name != null" >name = #{name,jdbcType=VARCHAR},</if>
+        <if test="password != null" >password = #{password,jdbcType=VARCHAR},</if>
         <if test="number != null" >number = #{number,jdbcType=VARCHAR},</if>
         <if test="clazz != null" >clazz = #{clazz,jdbcType=VARCHAR},</if>
         <if test="age != null" >age = #{age,jdbcType=INTEGER},</if>
         <if test="sex != null" >sex = #{sex,jdbcType=VARCHAR},</if>
-        <if test="phone != null" >phone = #{name,jdbcType=VARCHAR},</if>
+        <if test="phone != null" >phone = #{phone,jdbcType=VARCHAR},</if>
         WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -50,6 +54,10 @@
 
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT * FROM students
+    </select>
+
+    <select id="selectByNameAndPassword" resultMap="BaseResultMap">
+        SELECT * FROM students WHERE name = #{0, jdbcType=VARCHAR} AND password = #{1, jdbcType=VARCHAR}
     </select>
 
 </mapper>
