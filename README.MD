@@ -86,7 +86,72 @@ springMVC既可以开发web，也能开发webService。
 
 ## velocity
 
-模板语言，语法简单，用过struts2的同学就知道了，语法太复杂了，完全搞不懂啊。
+Velocity是一个基于Java的模板引擎（template engine），语法简单。
+
+用过struts2的同学就知道了，语法太复杂了，完全搞不懂啊。
+
+velocity 对变量的取值用到 **${varName}** 这样子的形式（是不是和spring的配置文件取变量的形式一样？）
+也可以使用$varName的形式。
+但是使用期间，要确保velocity变量和普通的字符串没有歧义。
+
+- **"#"用来标识Velocity的脚本语句，包括#set、#if 、#else、#end、#foreach、#end、#iinclude、#parse、#macro等**
+- **"$"用来标识一个对象(或理解为变量)**
+- **"}"用来明确标识Velocity变量(这样子可以防止歧义)**
+- **"!"用来强制把不存在的变量显示为空白，没有使用"!"，那么当一个变量stu不存在时，前端会显示 "$stu" 这样子的形式**
+
+
+常用到以下一些语法。
+
+### 遍历List容器
+
+```
+#foreach ($element in $list)
+    $element
+#end
+```
+### 遍历Map
+
+```
+#foreach($data in $mapData.entrySet())
+       <p>KEY: ${data.key}</p>
+       <p>VALUE: ${data.value}</p>
+#end
+```
+
+或者
+
+```
+#foreach ( $key in $mapData.keySet())
+    <p>Key: $key</p>
+    <p>Value: $list.get($key)</p>
+#end
+```
+
+### 条件语句
+
+```
+#if($!stu.status ==  0)
+    <p>审核成功</p>
+#elseif($!stu.status == 1)
+    <p>审核失败</p>
+#elseif($!stu.status == 2)
+    <p>等待审核</p>
+#else
+    <p>$!stu.status
+#end
+```
+
+### 一些不常用的
+
+**#set**
+
+```
+#set ($i=0)
+#foreach($info in $list)
+序号:$i --> $!info
+#set($i=$i+1)
+#end
+```
 
 ## springMVC整合velocity
 
