@@ -1,9 +1,14 @@
 package com.yifan.cms.demo.controller;
 
+import com.yifan.cms.demo.entity.Student;
+import com.yifan.cms.demo.service.JsonService;
 import com.yifan.cms.demo.service.StudentsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -19,6 +24,9 @@ import javax.annotation.Resource;
 public class StudentsController {
     @Resource
     private StudentsService studentsService;
+
+    @Resource
+    private JsonService jsonService;
 
     @RequestMapping("/list")
     public String list(Model model) {
@@ -36,4 +44,13 @@ public class StudentsController {
         studentsService.addUser(name, password, number, clazz, age, sex, phone);
         return new ModelAndView("redirect:/students/list");
     }
+
+    //返回json
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @ResponseBody
+    public Student showUser(@PathVariable String username) {
+        System.out.println("query username is " + username);
+        return jsonService.queryStu();
+    }
+
 }

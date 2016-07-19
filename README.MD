@@ -80,7 +80,136 @@ http://www.cnblogs.com/hxsyl/p/3435412.html
 
 之前使用了很长时间的struts2，偶然的机会用到了springMVC，之后决定再也不用struts2了。
 springMVC既可以开发web，也能开发webService。
-之后细说吧。。
+
+**SpringMVC的学习，我觉得最重要的是学习几个注解**
+
+### RequestMapping
+在web和web service开发中，这个注解都听重要的。 首先看一下它的源码：
+
+```java
+public @interface RequestMapping {
+    String name() default "";
+
+    String[] value() default {};
+
+    RequestMethod[] method() default {};
+
+    String[] params() default {};
+
+    String[] headers() default {};
+
+    String[] consumes() default {};
+
+    String[] produces() default {};
+}
+```
+ 它有6个字段。
+
+1. value
+指定请求的实际地址，指定的地址可以是URI Template 模式（后面将会说明）；
+
+2. method
+指定请求的method类型， GET、POST、PUT、DELETE等；
+
+3. params
+指定request中必须包含某些参数值是，才让该方法处理。
+
+4. headers
+指定request中必须包含某些指定的header值，才能让该方法处理请求。
+
+5. consumes
+指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;
+
+6. produces
+指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；
+
+不一一详解了，随便举些案例，以controller中的StudentsController.java为例，代码如下：
+
+```java
+package com.yifan.cms.demo.controller;
+
+import com.yifan.cms.demo.entity.Student;
+import com.yifan.cms.demo.service.JsonService;
+import com.yifan.cms.demo.service.StudentsService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
+
+/**
+ * Created by yifan
+ * Description:
+ * Author yifan(https://github.com/HadesJK)
+ * Data 2016/5/18 21:59
+ */
+@Controller
+@RequestMapping("/students")
+public class StudentsController {
+    @Resource
+    private StudentsService studentsService;
+
+    @Resource
+    private JsonService jsonService;
+
+    @RequestMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("students", studentsService.getAllMembers());
+        return "students/list";
+    }
+
+    @RequestMapping("/userAdd")
+    public String userAddIndex() {
+        return "students/userAdd";
+    }
+
+    @RequestMapping("/addUser")
+    public ModelAndView addUser(String name, String password, String number, String clazz, Integer age, String sex, String phone) {
+        studentsService.addUser(name, password, number, clazz, age, sex, phone);
+        return new ModelAndView("redirect:/students/list");
+    }
+
+    //返回json
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @ResponseBody
+    public Student showUser(@PathVariable String username) {
+        System.out.println("query username is " + username);
+        return jsonService.queryStu();
+    }
+
+}
+
+```
+
+### ResponseBody
+
+SpringMVC对json的支持，用到一个注解 **@ResponseBody**。
+
+需要注意的是，返回json的情况下，需要在pom.xml中加入jackson的包
+
+```java
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+```
+
+以下是我在浏览器输入**http://localhost:8090/students/jql**
+
+返回结果 **{"id":null,"name":"Hades","password":"123456","number":"07110113110","clazz":"IEEE","age":18,"sex":"male","phone":"1595800"}**
+
+
+
 
 ------
 

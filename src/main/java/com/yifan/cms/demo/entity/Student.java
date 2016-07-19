@@ -1,12 +1,14 @@
 package com.yifan.cms.demo.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by yifan
  * Description:
  * Author yifan(https://github.com/HadesJK)
  * Data 2016/5/18 20:59
  */
-public class Student {
+public class Student implements Serializable{
     private Integer id;
     private String name;
     private String password;
