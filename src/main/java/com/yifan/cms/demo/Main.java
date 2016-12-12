@@ -11,10 +11,10 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class Main {
     public static void main(String[] args) {
-        Server server = new Server(8090);
+        Server server = new Server(6688);
         WebAppContext context = new WebAppContext();
         context.setDescriptor("./src/main/webapp/WEB-INF/web.xml");
-        context.setResourceBase("./src/main/webapp");
+        context.setResourceBase("/Users/yifan/hades/xh/cms-demo/src/main/webapp");
         context.setContextPath("/");
         context.setParentLoaderPriority(true);
         server.setHandler(context);
