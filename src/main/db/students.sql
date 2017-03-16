@@ -20,7 +20,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `number` int(11) DEFAULT NULL,
   `class` varchar(255) DEFAULT NULL,
